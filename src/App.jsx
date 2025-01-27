@@ -1,9 +1,12 @@
+import Body from "./components/Body"
+import Header from "./components/Header"
 
 function App() {
 
   return (
     <>
-      <h1 className="underline text-2xl">Hello World</h1>
+      <Header />
+      <Body />
     </>
   )
 }
