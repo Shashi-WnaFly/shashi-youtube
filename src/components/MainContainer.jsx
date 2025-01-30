@@ -3,10 +3,10 @@ import VideoContainer from "./VideoContainer";
 
 const MainContainer = () => {
   return (
-    <>
+    <div className="grow flex-col">
       <ButtonList />
       <VideoContainer />
-    </>
+    </div>
   );
 };
 
