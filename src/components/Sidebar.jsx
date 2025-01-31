@@ -1,5 +1,9 @@
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+  const isMenu = useSelector((store) => store.app.isMenuOpen);
+
+  if(!isMenu) return;
   return (
     <div className="w-64">
       <div className=" p-6 font-semibold">Home</div>
@@ -15,10 +19,14 @@ const Sidebar = () => {
       </ul>
       <div className=" p-6 font-semibold">Subscriptions</div>
       <ul>
-        <li className="p-2 hover:bg-[#f8f8f8] cursor-pointer">Kunal Kushwaha</li>
+        <li className="p-2 hover:bg-[#f8f8f8] cursor-pointer">
+          Kunal Kushwaha
+        </li>
         <li className="p-2 hover:bg-[#f8f8f8] cursor-pointer">Akshay Saini</li>
         <li className="p-2 hover:bg-[#f8f8f8] cursor-pointer">Aditya Verma</li>
-        <li className="p-2 hover:bg-[#f8f8f8] cursor-pointer">Hitesh Choudhary</li>
+        <li className="p-2 hover:bg-[#f8f8f8] cursor-pointer">
+          Hitesh Choudhary
+        </li>
       </ul>
       <div className=" p-6 font-semibold">Explore</div>
       <ul>
@@ -33,7 +41,7 @@ const Sidebar = () => {
         <li className="p-2 hover:bg-[#f8f8f8] cursor-pointer">Course</li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
 export default Sidebar;
