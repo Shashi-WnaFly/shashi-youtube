@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 
-const VideoCard = (props) => {
-  const { items } = props;
+const VideoCard = ({items}) => {
   if(!items) return null;
 
   return (
