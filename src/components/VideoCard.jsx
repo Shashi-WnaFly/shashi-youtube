@@ -1,19 +1,23 @@
 /* eslint-disable react/prop-types */
-import PropTypes from "prop-types";
 
-const VideoCard = (props) => {
-  const { items } = props;
-  if(!items) return null;
+const VideoCard = ({ items }) => {
+  if (!items) return null;
+
+  const { channelTitle, localized, thumbnails } = items.snippet;
+  const { statistics } = items;
 
   return (
-    <div className=" rounded-xl">
-      <img className="rounded-xl" src={items?.snippet?.thumbnails?.medium?.url} />
+    <div className="flex flex-col shadow-2xl">
+      <div className=" rounded-xl flex justify-center">
+        <img className="rounded-xl w-full" src={thumbnails?.medium?.url} />
+      </div>
+      <div>
+        <div className=" font-semibold">{localized.title}</div>
+        <div>{channelTitle}</div>
+        <div>{statistics.viewCount} views</div>
+      </div>
     </div>
-  )
-}
-
-VideoCard.prototype = {
-  items : PropTypes.object.isRequired,
+  );
 };
 
 export default VideoCard;
