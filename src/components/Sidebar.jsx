@@ -5,7 +5,7 @@ const Sidebar = () => {
 
   if(!isMenu) return;
   return (
-    <div className="w-64 overflow-y-scroll">
+    <div className=" col-span-4 ">
       <div className="flex flex-col gap-2">
         <div className=" p-2 font-semibold cursor-pointer">Home</div>
         <div className=" p-2 font-semibold cursor-pointer">Shorts</div>
