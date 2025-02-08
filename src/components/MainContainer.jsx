@@ -3,7 +3,7 @@ import VideoContainer from "./VideoContainer";
 
 const MainContainer = () => {
   return (
-    <div className="grow flex-col">
+    <div className="">
       <ButtonList />
       <VideoContainer />
     </div>

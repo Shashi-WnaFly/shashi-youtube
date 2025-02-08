@@ -11,7 +11,7 @@ const Header = () => {
         dispatch(isMenuOpen());
     }
     return (
-        <div className="flex justify-between gap-54 sticky">
+        <div className="flex justify-between gap-54 bg-white w-full ">
             <div className="flex items-center gap-1 w-fit p-2 pl-6">
                 <div className="text-2xl p-2 cursor-pointer rounded-full hover:bg-[#ecebeb]" onClick={handleMenu}><RxHamburgerMenu /></div>
                 <div className="text-3xl ml-2 text-red-600"><FaYoutube /></div>

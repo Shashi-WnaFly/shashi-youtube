@@ -6,7 +6,7 @@ const VideoContainer = () => {
 
   usePopularVideo();
   const popularVideos =  useSelector((store) => store.app.popularYoutubeVideos);
-  console.log(popularVideos)
+  // console.log(popularVideos)
   return (
     <div className="grid grid-cols-4 gap-4 pt-8">
       {popularVideos?.items?.map((item) => <VideoCard key={item.id} items = {item}/>)}

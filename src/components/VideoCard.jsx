@@ -7,7 +7,7 @@ const VideoCard = ({ items }) => {
   const { statistics } = items;
   
   let view = parseInt(statistics.viewCount);
-  if(view > 100000){
+  if( view > 100000 ){
     view = Math.round(view/100000);
     view = view + "M";
   } 
