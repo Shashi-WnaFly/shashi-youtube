@@ -12,9 +12,12 @@ const appSlice = createSlice({
         },
         addPopularYoutubeVideo: (state, action) => {
             state.popularYoutubeVideos = action.payload;
-        }
+        },
+        closeMenu: (state) => {
+            state.isMenuOpen = false;
+        },
     }
 })
 
-export const {isMenuOpen, addPopularYoutubeVideo} = appSlice.actions;
+export const {isMenuOpen, addPopularYoutubeVideo, closeMenu} = appSlice.actions;
 export default appSlice.reducer;
