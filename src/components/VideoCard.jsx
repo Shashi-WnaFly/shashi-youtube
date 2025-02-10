@@ -17,7 +17,7 @@ const VideoCard = ({ items }) => {
   }
 
   return (
-    <div className="flex flex-col shadow-2xl">
+    <div>
       <div className=" rounded-xl flex justify-center">
         <img className="rounded-xl w-full" src={thumbnails?.medium?.url} />
       </div>
