@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
+const SideVideoCard = ({ details }) => {
+  if (!details) return null;
 
-const VideoCard = ({ items }) => {
-  if (!items) return null;
-
-  const { channelTitle, localized, thumbnails } = items.snippet;
-  const { statistics } = items;
+  const { channelTitle, localized, thumbnails } = details.snippet;
+  const { statistics } = details;
 
   let view = parseInt(statistics.viewCount);
   if (view > 100000) {
@@ -16,7 +15,7 @@ const VideoCard = ({ items }) => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col">
       <div className=" rounded-xl flex justify-center">
         <img className="rounded-xl w-full" src={thumbnails?.medium?.url} />
       </div>
@@ -24,11 +23,11 @@ const VideoCard = ({ items }) => {
         <div className=" font-semibold text-nowrap overflow-hidden overflow-ellipsis">
           {localized.title}
         </div>
-        <div className="text-sm ">{channelTitle}</div>
-        <div className="text-sm ">{view} views</div>
+        <div className="text-xs ">{channelTitle}</div>
+        <div className="text-xs ">{view} views</div>
       </div>
     </div>
   );
 };
 
-export default VideoCard;
+export default SideVideoCard;
