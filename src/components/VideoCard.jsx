@@ -1,32 +1,15 @@
 /* eslint-disable react/prop-types */
 
+import Thumbnail from "./Thumbnail";
+import ThumDetail from "./ThumDetail";
+
 const VideoCard = ({ items }) => {
   if (!items) return null;
-
-  const { channelTitle, localized, thumbnails } = items.snippet;
-  const { statistics } = items;
-
-  let view = parseInt(statistics.viewCount);
-  if (view > 100000) {
-    view = Math.round(view / 100000);
-    view = view + "M";
-  } else if (view > 1000) {
-    view = Math.round(view / 1000);
-    view = view + "K";
-  }
-
+  const {thumbnails} = items.snippet;
   return (
     <div>
-      <div className=" rounded-xl flex justify-center">
-        <img className="rounded-xl w-full" src={thumbnails?.medium?.url} />
-      </div>
-      <div className="p-2 pl-4">
-        <div className=" font-semibold text-nowrap overflow-hidden overflow-ellipsis">
-          {localized.title}
-        </div>
-        <div className="text-sm ">{channelTitle}</div>
-        <div className="text-sm ">{view} views</div>
-      </div>
+      <Thumbnail thumbnails={thumbnails}/>
+      <ThumDetail items={items}/>
     </div>
   );
 };
