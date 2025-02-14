@@ -23,7 +23,7 @@ const WatchPage = () => {
             className=" rounded-2xl"
             width="853"
             height="480"
-            src={"https://www.youtube.com/embed/" + searchParams.get("v")}
+            src={"https://www.youtube.com/embed/" + searchParams.get("v") + "?autoplay=1"}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
