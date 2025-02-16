@@ -5,6 +5,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { isMenuOpen } from "../utils/appSlice";
 import { useEffect, useState } from "react";
+import { YOUTUBE_SEARCH_API } from "../utils/constant";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -27,11 +28,9 @@ const Header = () => {
   }, [searchText]);
 
   const getSuggestionResult = async () => {
-    const data = await fetch(
-      "https://www.googleapis.com/youtube/v3/" + searchText
-    );
+    const data = await fetch(YOUTUBE_SEARCH_API + searchText);
     const json = await data.json();
-    setSuggestion(json);
+    setSuggestion(json[1]);
   };
 
   return (
@@ -66,12 +65,15 @@ const Header = () => {
         {showSuggestions && suggestion && (
           <div className="absolute w-full bg-white z-10">
             <ul className="flex grow flex-col ">
-              {suggestion.map((s) => (
-                <li key={s} className="flex items-center p-2 font-semibold hover:bg-gray-200 cursor-pointer">
+              {suggestion.map((s, i) => (
+                <li
+                  key={i}
+                  className="flex items-center p-2 font-semibold hover:bg-gray-200 cursor-pointer"
+                >
                   <span className="text-xl px-2">
                     <CiSearch />
                   </span>
-                  s
+                  {s}
                 </li>
               ))}
             </ul>
