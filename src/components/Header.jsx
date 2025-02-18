@@ -2,16 +2,18 @@ import { CiSearch } from "react-icons/ci";
 import { FaUserAlt, FaYoutube } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isMenuOpen } from "../utils/appSlice";
 import { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
+import { cacheResults } from "../utils/searchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestion, setSuggestion] = useState([]);
+  const cacheRes = useSelector((store) => store.search);
 
   const handleMenu = () => {
     dispatch(isMenuOpen());
@@ -28,9 +30,14 @@ const Header = () => {
   }, [searchText]);
 
   const getSuggestionResult = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + searchText);
-    const json = await data.json();
-    setSuggestion(json[1]);
+    if (cacheRes[searchText]) {
+      setSuggestion(cacheRes[searchText]);
+    } else {
+      const data = await fetch(YOUTUBE_SEARCH_API + searchText);
+      const json = await data.json();
+      dispatch(cacheResults({ [searchText]: json[1] }));
+      setSuggestion(json[1]);
+    }
   };
 
   return (
