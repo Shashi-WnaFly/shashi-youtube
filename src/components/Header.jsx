@@ -4,20 +4,25 @@ import { IoIosNotifications } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { isMenuOpen } from "../utils/appSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
 import { cacheResults } from "../utils/searchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(true);
   const [suggestion, setSuggestion] = useState([]);
   const cacheRes = useSelector((store) => store.search);
 
   const handleMenu = () => {
     dispatch(isMenuOpen());
   };
+
+  const clickSuggestion = (text) => {
+    setSearchText(text);
+    setShowSuggestions(false);
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -61,9 +66,9 @@ const Header = () => {
             placeholder="Search"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className="pl-4 grow p-2 rounded-tl-4xl rounded-bl-4xl border-1 "
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
+            // onBlur={() => setShowSuggestions(false)}
+            className="pl-4 grow p-2 rounded-tl-4xl rounded-bl-4xl border-1 "
           />
           <button className=" hover:bg-[#ecebeb] py-2 px-6 text-2xl bg-[#f8f8f8] cursor-pointer inline-flex items-center rounded-br-4xl rounded-tr-4xl border-gray-300 border-1 ">
             <CiSearch />
@@ -75,6 +80,7 @@ const Header = () => {
               {suggestion.map((s, i) => (
                 <li
                   key={i}
+                  onClick={(e) => clickSuggestion(e.target.innerText)}
                   className="flex items-center p-2 font-semibold hover:bg-gray-200 cursor-pointer"
                 >
                   <span className="text-xl px-2">
