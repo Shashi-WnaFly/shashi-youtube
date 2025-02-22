@@ -7,6 +7,7 @@ const LiveComments = createSlice({
     },
     reducers: {
         addMessages : (state, action) => {
+            if(state.messages.length >= 25) state.messages.shift();
             state.messages.push(action.payload);
         }
     }
